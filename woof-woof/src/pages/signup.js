@@ -2,6 +2,7 @@ import Card from "../components/ui/Card";
 import classes from './Signup.module.css'
 function SignUp(){
     return(
+        <div className={classes.wrapper}>
         <Card>
         <form action="signup.php" method="POST" className={classes.form}>
         <div className={classes.control}>    
@@ -34,9 +35,9 @@ function SignUp(){
         <div className={classes.actions}>
                 <button type="submit" id="submit" name="submit">SIGN UP</button>
         </div>
-      
       </form>
       </Card>
+      </div>
     )
 }
 
