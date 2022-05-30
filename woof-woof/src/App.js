@@ -1,20 +1,30 @@
-import React from 'react'
-import Header from './header';
-import {useState} from 'react';
+import React from 'react';
+import {BrowserRouter as Router,Route,Routes} from 'react-router-dom';
+import AllMeetupsPage from './pages/AllMeetups';
+import NewMeetupPage from './pages/NewMeetup';
+import FavoritesPage from './pages/Favorites';
+import MainNavigation from './components/layout/MainNavigation'
 
 function App() {
-  const [ageOf, setAge]=useState("19")
-  const values1={Name: "Surendira Balaji" ,Age:"19"}
-  const values2={Name: "Pavan Adithya", Age:"20"}
-  return (
+return(
+      <div>
+        <Router>
+        <MainNavigation/>
+          <Routing/>
+        </Router>
+      </div>
+)
+} 
+const Routing = ()=>{
+  return(
     <React.Fragment>
-        <Header attribute={values1}/>
-        <Header attribute={values2}/>
-        <button onClick={()=>setAge("20")}>Submit</button>
-        {ageOf==="20" ? <Header attribute={values1}/> : null}
+      <Routes>
+          <Route path='/' exact element={<AllMeetupsPage/>}/>
+          <Route path='/new-meetup' exact element={<NewMeetupPage/>}/>
+          <Route path='/favorites' exact element={<FavoritesPage/>}/>
+
+      </Routes>
     </React.Fragment>
-  
   )
 }
-
 export default App;
