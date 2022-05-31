@@ -5,6 +5,12 @@
     width: 700px;
   }
   
+  .wrapper{
+    background-image: url(https://images.pexels.com/photos/2791684/pexels-photo-2791684.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+    background-repeat: no-repeat;
+    background-size:cover;
+
+  }
   .control {
     margin-bottom: 0.5rem;
   }
@@ -53,3 +59,4 @@
     background-color: #a50e48;
     border-color: #a50e48;
   }
+ 
