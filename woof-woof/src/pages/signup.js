@@ -10,14 +10,22 @@ function SignUp(){
         const [UserType, setUserType] = useState(null);
         const [Address, setAddress] = useState(null);
 
-        function submitHandler(event){
-                console.log(Name);
-                console.log(Email);
-                console.log(Password);
-                console.log(Phone);
-                console.log(UserType);
-                console.log(Address);
+        async function submitHandler(event){
+               
                 event.preventDefault();
+                const formData = {
+                        Name,Email,Password,Phone,UserType,Address 
+                }
+                let res =  await fetch("http://localhost:8000/signup",{
+                        method : 'POST',
+                        headers :{
+                                'Accept' : 'application/json',
+                                'Content-Type': 'application/json'
+                        },
+                        body : JSON.stringify(formData)
+                })
+                
+        
         }
         return(
         <div className={classes.wrapper}>
@@ -52,7 +60,7 @@ function SignUp(){
                 <input type="text" id="address" name="address" placeholder="Enter Address" size="25" required onChange={(e)=> setAddress(e.target.value)}/>
         </div>
         <div className={classes.actions}>
-                <button type="submit" id="submit" name="submit">SIGN UP</button>
+                <button type="submit" id="submit" name="submit" onSubmit={submitHandler}>SIGN UP</button>
         </div>
       </form>
       </Card>
