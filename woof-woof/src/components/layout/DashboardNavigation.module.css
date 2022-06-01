@@ -1,27 +1,30 @@
 .TopBar{
     display: flex;
     align-items: center ;
-    top: 0;
-    margin-left: 2rem;
-    margin-right: 2rem;
+    margin:0 10px;
     justify-content: space-between;
 }
-.TopRightBar{
-    display: flex;
+.TopRightBar {
+    display:flex;
+    align-items: center;
 }
 
-
-
 .TopRightBar span{
-    padding: 2rem;
-    
-    
+    margin: 0 20px;
+    display: inline-block;
+}
+.TopLeftBar{
+    display: flex;
+    align-items: center;
+}
+.TopLeftBar h1{
+    margin: 0 20px;
+    display: inline-block;
 }
 
 .TopBar h1{
     font-size: 35px;
-    margin-left: 4rem;
-    margin-top: -2.5rem;
+
 }
 
 .TopBar span:hover{

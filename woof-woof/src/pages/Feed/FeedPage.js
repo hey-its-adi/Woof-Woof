@@ -8,7 +8,7 @@ import {TbVaccine} from 'react-icons/tb'
 
 const FeedPage = () => {
   return (
-    <div className="feed">
+    <div className="feed">        
         <div className="feedWrapper">
             <div className='feedTop'>
                 <div className="feedTopLeft">      
