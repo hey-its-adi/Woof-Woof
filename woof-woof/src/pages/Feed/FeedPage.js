@@ -1,4 +1,4 @@
-import classes from './FeedPage.css'
+import './FeedPage.css'
 import {FiMoreVertical} from 'react-icons/fi'
 import {FcLike} from 'react-icons/fc'
 import {SiDatadog} from 'react-icons/si'
