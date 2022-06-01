@@ -4,19 +4,17 @@
     top: 0;
     margin-left: 2rem;
     margin-right: 2rem;
+    justify-content: space-between;
 }
 .TopRightBar{
-    flex: 1;
     display: flex;
 }
 
-.TopLeftBar{
-    flex: 3;
 
-}
 
 .TopRightBar span{
     padding: 2rem;
+    
     
 }
 

@@ -6,11 +6,11 @@ import SignUp from './pages/signup';
 import LoginPage from './pages/Login';
 import FeedPage from './pages/Feed/FeedPage'
 import DashboardNavigation from './components/layout/DashboardNavigation';
-
+import classes from "./App.module.css"
 
 function App() {
 return(
-      <div>
+      <div className={classes.AppContainer}>
         
         <Router>
         {/*<MainNavigation/>
