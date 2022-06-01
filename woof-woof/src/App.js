@@ -4,18 +4,36 @@ import HomePage from './pages/AllMeetups';
 import MainNavigation from './components/layout/MainNavigation'
 import SignUp from './pages/signup';
 import LoginPage from './pages/Login';
+import FeedPage from './pages/Feed/FeedPage'
+import DashboardNavigation from './components/layout/DashboardNavigation';
 
 
 function App() {
 return(
       <div>
+        
         <Router>
-        <MainNavigation/>
-        <Routing/>
+        {/*<MainNavigation/>
+        <Routing/>*/}    
+        <DashboardNavigation/>  
+        <Routing1/>
         </Router>
+      
       </div>
 )
 } 
+const Routing1=()=>{
+  return(
+      <>
+      <Routes>
+          <Route path='/Upload'/>
+          <Route path='/Profile'/>
+          <Route path='/Achievments'/>
+          <Route path='/Dashboard' element={<FeedPage/>}/>
+      </Routes>
+      </>
+  )
+}
 const Routing = ()=>{
   return(
     <React.Fragment>

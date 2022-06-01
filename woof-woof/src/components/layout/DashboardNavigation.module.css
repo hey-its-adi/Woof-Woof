@@ -1,0 +1,39 @@
+.TopBar{
+    display: flex;
+    align-items: center ;
+    top: 0;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+.TopRightBar{
+    flex: 1;
+    display: flex;
+}
+
+.TopLeftBar{
+    flex: 3;
+
+}
+
+.TopRightBar span{
+    padding: 2rem;
+    
+}
+
+.TopBar h1{
+    font-size: 35px;
+    margin-left: 4rem;
+    margin-top: -2.5rem;
+}
+
+.TopBar span:hover{
+    color:red;
+}
+
+
+.HomeIcon:hover{
+    color:red;
+}
+
+
+
