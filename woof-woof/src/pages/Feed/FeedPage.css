@@ -63,10 +63,11 @@
 
 .feedImg{
     margin-top: 20px;
-    width:  480px;
-    height:  480px;
-    max-width: 500px;
-    object-fit: contain;
+    max-width:  480px;
+    max-height:  480px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
 }
 
 .feedBottom{
