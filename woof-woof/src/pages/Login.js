@@ -2,14 +2,18 @@ import Card from "../components/ui/Card";
 import classes from './Login.module.css'
 import React, {useState} from 'react';
 
-function LoginPage() {
+function LoginPage({setRender}) {
   const [email,setEmail]=useState(null);
   const [password,setPassword]=useState(null);
 
   function submitHandler(event){
+    if(password==="1234"){
+      setRender(true);
+    }
     console.log('hello');
     console.log(email);
     console.log(password);
+  
     event.preventDefault();
   }
 
