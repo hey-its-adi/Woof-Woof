@@ -10,15 +10,13 @@ import classes from "./App.module.css"
 
 function App() {
 return(
-      <div className={classes.AppContainer}>
-        
+      <div className={classes.AppContainer}>        
         <Router>
         {/*<MainNavigation/>
         <Routing/>*/}    
         <DashboardNavigation/>  
         <Routing1/>
         </Router>
-      
       </div>
 )
 } 
