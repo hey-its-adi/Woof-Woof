@@ -1,4 +1,3 @@
-import Card from "../components/ui/Card";
 import classes from './Login.module.css'
 import React, {useState} from 'react';
 
@@ -19,7 +18,6 @@ function LoginPage({setRender}) {
 
     return (
       <div className={classes.wrapper}>
-        <Card>
         <form method="POST" className={classes.form} onSubmit={submitHandler}>
           <div >
               <div className={classes.control}>
@@ -35,7 +33,6 @@ function LoginPage({setRender}) {
               </div>
           </div>
         </form>
-        </Card>
       </div>
     )
   }
