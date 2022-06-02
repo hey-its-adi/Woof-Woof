@@ -4,7 +4,7 @@ import React, {useState} from 'react';
 
 function LoginPage() {
   const [email,setEmail]=useState(null);
-  const [password,setPassword]=useState(null)
+  const [password,setPassword]=useState(null);
 
   function submitHandler(event){
     console.log('hello');
@@ -27,7 +27,7 @@ function LoginPage() {
                 <input type="password" id="password" name="password"  placeholder="Enter password" required onChange={(e) => setPassword(e.target.value)}/>
               </div>
               <div className={classes.actions}>
-                <button type="submit" name="submit" id="submit">LOGIN</button>          
+                  <button type="submit" name="submit" id="submit">LOGIN</button>          
               </div>
           </div>
         </form>
