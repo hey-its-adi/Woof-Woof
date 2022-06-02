@@ -22,7 +22,7 @@ function LoginPage({setRender}) {
             },
             body : JSON.stringify(formData)
     })
-    
+    console.log(res);
    
   
     event.preventDefault();
