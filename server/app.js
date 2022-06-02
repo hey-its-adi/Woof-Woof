@@ -46,6 +46,31 @@ app.post('/signup', (req,res) => {
     })
 
 })
+
+app.post('/login', (req,res) => {
+    const input2 = req.body;
+    console.log(input2);
+   
+    pool.getConnection((err,connection) => {
+        if(err) throw err
+        console.log(`connected as id ${connection.threadId}`)
+        connection.query(`SELECT password FROM users WHERE email='${input2.email}'`,(err,rows) => {
+            connection.release() 
+             if(!err)
+            {
+                setValue(rows)
+            }
+            else
+            {
+                console.log(err)
+            } 
+        })
+    })
+})
+function setValue(value) {
+    someVar = value;
+   // console.log(someVar);
+  }
 app.listen(port, () => {
     console.log("Server started running")
 })
