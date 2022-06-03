@@ -6,13 +6,14 @@ function UploadPage () {
     const [Location, setLocation] = useState(null);
     const [Phone, setPhone] = useState(null);
     const [Vaccination, setVaccination] = useState(null);
+    const [Pic, setPic] = useState(null);
 
 
 
     async function submitHandler(event){
         event.preventDefault();
         const formData = {
-                Name,Location,Phone,Vaccination
+                Name,Location,Phone,Vaccination,Pic
         }
         let res =  await fetch("http://localhost:8000/Upload",{
                 method : 'POST',
@@ -50,6 +51,10 @@ function UploadPage () {
                         <option value="NotVaccinated">Not Vaccinated</option>
                         </select>
                 </div>
+                <div  className={classes.control}>    
+                        <label htmlFor="pic">Picture</label>
+                        <input type="file" id="pic" name="pic" required onChange={(e)=> setPic(e.target.value)}/>
+                </div>   
 
                 <div className={classes.actions}>
                         <button type="submit" id="submit" name="submit" onSubmit={submitHandler}>SIGN UP</button>
