@@ -78,25 +78,30 @@ app.post('/login', async (req,res) => {
 
     return res.status(200).json({message: "logged in"});
 
-    // pool.getConnection((err,connection) => {
-    //     if(err) throw err
-    //     console.log(`connected as id ${connection.threadId}`)
-    //     connection.query(`SELECT password FROM users WHERE email='${input2.email}'`,(err,rows) => {
-    //         connection.release() 
-    //          if(!err)
-    //         {
-    //             setValue(rows)
-    //             console.log(rows[0].password)
-                           
-    //         }
-    //         else
-    //         {
-    //             console.log(err)
-    //         } 
-    //     })
+})
 
+app.post('/Upload', (req,res) => {
+    const input3 = req.body;
+    console.log(input3);
+   
+    pool.getConnection((err,connection) => {
+        if(err) throw err
+        console.log(`connected as id ${connection.threadId}`)
+        connection.query(`INSERT INTO animals (name,location,phone,vaccine) VALUES('${input3.Name}','${input3.Location}','${input3.Phone}','${input3.Vaccination}')`,(err,rows) => {
+            connection.release() 
 
-    // })
+            if(!err)
+            {
+                res.send(rows)
+           
+            }
+            else
+            {
+                console.log(err)
+            } 
+        })
+    })
+
 })
 function setValue(value) {
     someVar = value;

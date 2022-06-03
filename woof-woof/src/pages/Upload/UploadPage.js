@@ -11,10 +11,18 @@ function UploadPage () {
 
     async function submitHandler(event){
         event.preventDefault();
-        console.log(Name);
-        console.log(Location);
-        console.log(Phone);
-        console.log(Vaccination);
+        const formData = {
+                Name,Location,Phone,Vaccination
+        }
+        let res =  await fetch("http://localhost:8000/Upload",{
+                method : 'POST',
+                headers :{
+                        'Accept' : 'application/json',
+                        'Content-Type': 'application/json'
+                },
+                body : JSON.stringify(formData)
+        })
+        
     }
     
   return (
