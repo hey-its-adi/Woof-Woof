@@ -22,8 +22,14 @@ function LoginPage({setRender}) {
             },
             body : JSON.stringify(formData)
     })
-    console.log(res);
-   
+    if(res.ok) {
+      setRender(true);
+      console.log("logged");
+    } else {
+      console.log("try again")
+    }
+    const result = await res.json();
+    console.log(result);
   
     event.preventDefault();
   }
