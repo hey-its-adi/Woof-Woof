@@ -34,7 +34,7 @@ function MainNavigation()
             
             <div className={classes.TopLeftBar}>
                 <span><FaDog size={'3rem'}/></span>
-                <h1 >Woof Woof</h1>
+                <h1><span>Woof </span><span>Woof</span></h1>
             </div>
             <div className={classes.TopRightBar}>
                 <Link to='/'>

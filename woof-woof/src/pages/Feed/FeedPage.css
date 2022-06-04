@@ -12,8 +12,8 @@
     padding: 10px;
     margin: 30px;
     border-radius: 10px;
-    -webkit-box-shadow: 0px 0px 16px -8px rgba(0,0,0,0.68);
-    box-shadow: 0px 0px 16px -8px rgba(0,0,0,0.68);
+    -webkit-box-shadow: 0px 0px 16px -8px rgba(6, 54, 17, 0.68);
+    box-shadow: 0px 0px 16px -8px rgba(6, 66, 14, 0.68);
 }
 
 .feedTop{
@@ -86,3 +86,6 @@
 .feedLikeCounter{
     font-size: 15px;
 }
+ .feedWrapper{
+     background-color: rgb(16, 197, 136);
+ }
