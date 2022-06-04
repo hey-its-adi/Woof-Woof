@@ -12,24 +12,33 @@ function UploadPage () {
 
     async function submitHandler(event){
         event.preventDefault();
-        const formData = {
+        {/*const formData = {
+                
                 Name,Location,Phone,Vaccination,Pic
-        }
+        }*/}
+
+        let fd= new FormData()
+        fd.append('Pic',Pic)
+        fd.append('name',Name)
+        fd.append('vaccination',Vaccination)
+        fd.append('phone',Phone)
+        fd.append('location',Location)
+        console.log(Pic);
         let res =  await fetch("http://localhost:8000/Upload",{
                 method : 'POST',
-                headers :{
-                        'Accept' : 'application/json',
-                        'Content-Type': 'application/json'
-                },
-                body : JSON.stringify(formData)
+                // {/*headers :{
+                //         'Accept' : 'application/json',
+                //         'Content-Type': 'application/json'
+                // },*/}
+                body : fd
         })
-        
+        console.log(res);
     }
     
   return (
     <div className={classes.Upload}>
         <div className={classes.Wrapper}>
-        <form onSubmit={submitHandler} method="POST" className={classes.form}>
+        <form onSubmit={submitHandler} method="POST" className={classes.form} enctype="multipart/form-data" action='/Upload'>
                 <div className={classes.control}>    
                         <label htmlFor="name">Breed Name</label>
                         <input type="text" name="name" id="name" size="30" maxLength={30} placeholder="Enter the breed name" required onChange={(e)=> setName(e.target.value)}/>
@@ -52,8 +61,8 @@ function UploadPage () {
                         </select>
                 </div>
                 <div  className={classes.control}>    
-                        <label htmlFor="pic">Picture</label>
-                        <input type="file" id="pic" name="pic" required onChange={(e)=> setPic(e.target.value)}/>
+                        <label htmlFor="Pic">Picture</label>
+                        <input type="file" id="pic" name="Pic" required onChange={(e)=> setPic(e.target.files[0])}/>
                 </div>   
 
                 <div className={classes.actions}>
