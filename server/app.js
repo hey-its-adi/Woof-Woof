@@ -3,8 +3,23 @@ const bodyParser = require('body-parser')
 const mysql = require('promise-mysql')
 const cors = require('cors')
 
+const multer =require("multer")
 const app= express()
 const port = process.env.PORT || 8000
+// const upload= multer({storage:multer.memoryStorage({})})
+const storage= multer.diskStorage({
+    destination:(req,file,cb)=>{
+      cb(null,'./public/images')
+    },
+    filename:(req,file,cb)=>{
+      cb(null,new Date().toISOString().replace(/:/g, '-')+file.originalname)
+    }
+  })
+  const upload=multer({
+    storage:storage,
+    // dest: './public/images'
+  })
+
 app.use(cors({
     origin: 'http://localhost:3000'
 }))
@@ -80,14 +95,17 @@ app.post('/login', async (req,res) => {
 
 })
 
-app.post('/Upload', (req,res) => {
+app.post('/Upload',upload.single('Pic'), async (req,res) => {
+ 
+    console.log(req.file)
+    const image= req.file.path;
     const input3 = req.body;
     console.log(input3);
    
     pool.getConnection((err,connection) => {
         if(err) throw err
         console.log(`connected as id ${connection.threadId}`)
-        connection.query(`INSERT INTO animals (name,location,phone,vaccine) VALUES('${input3.Name}','${input3.Location}','${input3.Phone}','${input3.Vaccination}')`,(err,rows) => {
+        connection.query(`INSERT INTO animals (name,location,phone,vaccine,fname) VALUES('${input3.Name}','${input3.Location}','${input3.Phone}','${input3.Vaccination}','${image}')`,(err,rows) => {
             connection.release() 
 
             if(!err)
@@ -101,6 +119,7 @@ app.post('/Upload', (req,res) => {
             } 
         })
     })
+
 
 })
 function setValue(value) {
