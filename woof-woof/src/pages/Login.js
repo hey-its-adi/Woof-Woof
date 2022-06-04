@@ -5,13 +5,31 @@ function LoginPage({setRender}) {
   const [email,setEmail]=useState(null);
   const [password,setPassword]=useState(null);
 
-  function submitHandler(event){
-    if(password==="1234"){
+  async function submitHandler(event){
+   
+    /*if(password==="1234"){
       setRender(true);
+    }*/
+    event.preventDefault();
+    const formData = {
+            email,password
     }
-    console.log('hello');
-    console.log(email);
-    console.log(password);
+    let res =  await fetch("http://localhost:8000/login",{
+            method : 'POST',
+            headers :{
+                    'Accept' : 'application/json',
+                    'Content-Type': 'application/json'
+            },
+            body : JSON.stringify(formData)
+    })
+    if(res.ok) {
+      setRender(true);
+      console.log("logged");
+    } else {
+      console.log("try again")
+    }
+    const result = await res.json();
+    console.log(result);
   
     event.preventDefault();
   }

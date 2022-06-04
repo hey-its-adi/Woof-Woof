@@ -3,6 +3,7 @@ import {BrowserRouter as Router,Route,Routes} from 'react-router-dom';
 import FeedPage from './pages/Feed/FeedPage'
 import DashboardNavigation from './components/layout/DashboardNavigation';
 import classes from "./App.module.css"
+import UploadPage from './pages/Upload/UploadPage';
 
 function AppDashboard() {
 return(
@@ -10,7 +11,7 @@ return(
         <Router> 
         <DashboardNavigation/> 
         <Routes>
-          <Route path='/Upload'/>
+          <Route path='/Upload' element={<UploadPage/>}/>
           <Route path='/Profile'/>
           <Route path='/Achievments'/>
           <Route path='/Dashboard' element={<FeedPage/>}/>
