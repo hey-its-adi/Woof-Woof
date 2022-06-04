@@ -21,8 +21,9 @@
     align-items: center;
     justify-content: space-between;
 }
-
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Didact+Gothic&family=Luckiest+Guy&display=swap');
 .feedTopLeft{
+    font-family: 'Bebas Neue', cursive;
     display: flex;
     align-items: center;
 }
@@ -40,8 +41,9 @@
 .feedCenter{
     margin: 20px 0;
 }
-
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Didact+Gothic&display=swap');
 .feedCenterBottom{
+    font-family: 'Didact Gothic', sans-serif;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -84,8 +86,9 @@
 }
 
 .feedLikeCounter{
+    font-family: 'Bebas Neue', cursive;
     font-size: 15px;
 }
  .feedWrapper{
-     background-color: rgb(16, 197, 136);
+     background-color: rgb(254, 253, 219);
  }

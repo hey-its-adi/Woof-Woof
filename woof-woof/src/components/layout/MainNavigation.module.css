@@ -35,8 +35,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
 
 h1 {
+  text-shadow: -4.5px 0 rgb(64, 46, 4);
   font-family: 'Luckiest Guy', cursive;
-  color: rgb(105, 242, 100);
+  color: rgb(255, 255, 255);
   text-transform: uppercase;
   width: 100%;
   text-align: center;
