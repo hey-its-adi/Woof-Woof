@@ -21,14 +21,24 @@
     margin: 0 20px;
     display: inline-block;
 }
-
+.TopLeftBar span{
+    color: white;
+}
 .TopBar h1{
-    font-size: 35px;
+    font-size: 70px;
 
 }
 
 .TopRightBar span:hover{
     color:red;
+}
+h1{
+    text-shadow: -4.5px 0 rgb(64, 46, 4);
+  font-family: 'Luckiest Guy', cursive;
+  color: rgb(255, 255, 255);
+  text-transform: uppercase;
+  width: 100%;
+  text-align: center;
 }
 
 

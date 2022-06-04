@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {FaDog} from 'react-icons/fa'
+import {FaPaw} from 'react-icons/fa'
 import {IoHomeOutline} from 'react-icons/io5'
 import {CgProfile} from 'react-icons/cg'
 import {GiHospitalCross} from 'react-icons/gi'
@@ -9,39 +9,39 @@ import {HiOutlineUpload} from 'react-icons/hi'
 
 
 function DashboardNavigation(){
-    const [ucolor, setucolor] = useState('blue')
-    const [hcolor, sethcolor] = useState('blue')
-    const [pcolor, setpcolor] = useState('blue')
-    const [acolor, setacolor] = useState('blue')
+    const [ucolor, setucolor] = useState('white')
+    const [hcolor, sethcolor] = useState('white')
+    const [pcolor, setpcolor] = useState('white')
+    const [acolor, setacolor] = useState('white')
 
     function changeUcolor(){
-        setucolor('red');
-        setacolor('blue');
-        sethcolor('blue');
-        setpcolor('blue');
+        setucolor('#cd7918');
+        setacolor('white');
+        sethcolor('white');
+        setpcolor('white');
     }
     function changePcolor(){
-        setpcolor('red');
-        setucolor('blue');
-        setacolor('blue');
-        sethcolor('blue');
+        setpcolor('#cd7918');
+        setucolor('white');
+        setacolor('white');
+        sethcolor('white');
     }
     function changeHcolor(){
-        setpcolor('blue');
-        setucolor('blue');
-        setacolor('blue');
-        sethcolor('red');
+        setpcolor('white');
+        setucolor('white');
+        setacolor('white');
+        sethcolor('#cd7918');
     }
     function changeAcolor(){
-        setacolor('red');
-        setpcolor('blue');
-        setucolor('blue');
-        sethcolor('blue');
+        setacolor('#cd7918');
+        setpcolor('white');
+        setucolor('white');
+        sethcolor('white');
     }
     return (      
     <div className={classes.TopBar}>
         <div className={classes.TopLeftBar}>
-            <span><FaDog size={'3rem'}/></span>
+            <span><FaPaw size={'4.2rem'}/></span>
             <h1>WOOF WOOF</h1>
         </div>    
         <div className={classes.TopRightBar}>
