@@ -25,7 +25,7 @@ app.use(cors({
     credentials: true
 }))
 
-app.use(bodyParser.urlencoded({extended:false}))
+app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 
 console.log(`hello`)
@@ -137,6 +137,30 @@ app.get('/Dashboard', async (req,res) => {
         }
         
         result =  await connection.query(`SELECT * FROM animals`);
+        if(!result || result.length == 0) {
+            return res.status(500).json({message: "no result"});
+        }
+    } catch(err) {
+        console.log(err);
+
+    }
+
+    return res.status(200).json({result});
+
+})
+
+app.post('/Profile', async (req,res) => {
+    
+    console.log("hiiii")
+   const uinput = req.body
+    let result = [];
+    try {
+        const connection =  await pool.getConnection();
+        if(!connection) {
+            return res.status(500).json({message: "DB connect fail"});
+        }
+        
+        result =  await connection.query(`SELECT * FROM animals WHERE user='${uinput.uname}'`);
         if(!result || result.length == 0) {
             return res.status(500).json({message: "no result"});
         }
