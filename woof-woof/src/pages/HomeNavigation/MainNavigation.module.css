@@ -43,13 +43,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
 
 h1 {
+  
   text-shadow: -4.5px 0 rgb(64, 46, 4);
   font-family: 'Luckiest Guy', cursive;
   color: rgb(255, 255, 255);
-  text-transform: uppercase;
-  width: 100%;
+
   text-align: center;
 }
-
+.TopBar h1{
+  font-size: 70px;
+}
+.TopLeftBar span{
+  color: white;
+}
 @import url("https://fonts.googleapis.com/css?family=Luckiest+Guy&display=swap");
 
