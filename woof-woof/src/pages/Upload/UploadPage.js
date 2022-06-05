@@ -2,7 +2,8 @@ import React from 'react'
 import classes from './UploadPage.module.css'
 import {useState} from 'react';
 
-function UploadPage ({forwarUsername}) {
+function UploadPage ({forwardUsername}) {
+    console.log(forwardUsername.username)
     const [Name, setName] = useState('');
     const [Location, setLocation] = useState('');
     const [Phone, setPhone] = useState('');
@@ -10,10 +11,7 @@ function UploadPage ({forwarUsername}) {
     const [Pic, setPic] = useState('');
     const [Uname,setUname]= useState('')
     const [Render, setRender] = useState('');
-        
- 
-
-
+   
     async function submitHandler(event,onSubmitProps){
         event.preventDefault();
 
@@ -24,7 +22,8 @@ function UploadPage ({forwarUsername}) {
         fd.append('vaccination',Vaccination)
         fd.append('phone',Phone)
         fd.append('location',Location)
-        fd.append('uname',Uname)
+        fd.append('uname',forwardUsername.username)
+
         console.log(Pic);
         let res =  await fetch("http://localhost:8000/Upload",{
                 method : 'POST',
@@ -32,7 +31,7 @@ function UploadPage ({forwarUsername}) {
                 //         'Accept' : 'application/json',
                 //         'Content-Type': 'application/json'
                 // },*/}
-                body : fd,forwarUsername
+                body : fd
         })
         console.log(res);
         if(res.ok){     
@@ -47,7 +46,7 @@ function UploadPage ({forwarUsername}) {
         
                 <div className={classes.control}>    
                         <label htmlFor="user">Your Name</label>
-                        <input type="text" value ={Uname} name="user" id="user" size="30" maxLength={30} placeholder="Enter the Your Name" required onChange={(e)=> setUname(e.target.value)}/>
+                        <input type="text" value ={forwardUsername.username} name="user" id="user" size="30" maxLength={30} placeholder="Enter the Your Name" required disabled  />
                 </div>               
                 <div className={classes.control}>    
                         <label htmlFor="name">Breed Name</label>
@@ -74,6 +73,7 @@ function UploadPage ({forwarUsername}) {
                         <label htmlFor="Pic">Picture</label>
                         <input type="file" id="pic" name="Pic"  required onChange={(e)=> setPic(e.target.files[0])}/>
                 </div>   
+        
                 <div className={classes.actions}>
                         <button type="submit" id="submit" name="submit" onSubmit={submitHandler}>SUBMIT</button>
                 </div>

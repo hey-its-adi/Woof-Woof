@@ -8,7 +8,7 @@ import {TbVaccine} from 'react-icons/tb'
 import {useEffect,useState} from 'react'
 
 function FeedPage ({forwardUsername})  {
-    console.log(forwardUsername.username)
+    console.log(forwardUsername)
     const [Post, setPost] = useState([]);
     const [refreshCount, setRefreshCount] = useState(0);
 
@@ -36,7 +36,7 @@ function FeedPage ({forwardUsername})  {
             return (<div className="feedWrapper">
                 <div className='feedTop'>
                     <div className="feedTopLeft">      
-                        <span className="feedUserName">{forwardUsername.username}</span>
+                        <span className="feedUserName">{post.user}</span>
                         <span className="feedTime">5 mins ago</span>
                     </div>
                     <div className="feedTopRight">
