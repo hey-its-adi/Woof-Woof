@@ -7,24 +7,25 @@ import {MdOutlineContactPhone} from 'react-icons/md'
 import {TbVaccine} from 'react-icons/tb'
 import {useEffect,useState} from 'react'
 
-function FeedPage ({forwardUsername})  {
+function FeedPage ({forwardUsername,refreshCount,setRefreshCount})  {
     console.log(forwardUsername)
     const [Post, setPost] = useState([]);
-    const [refreshCount, setRefreshCount] = useState(0);
+
 
     useEffect(() => {
-         getPost();
+        console.log("yes")
+        const getPost = async () => {
+            const res = await fetch("http://localhost:8000/Dashboard",{
+                credentials: 'include',
+                method: 'GET',
+            })
+            const reponse = await res.json()
+            setPost(await reponse.result)
+            console.log(await reponse)
+        }   
+        getPost();
     }, [refreshCount])    
 
-    const getPost = async ()=>{
-        const res = await fetch("http://localhost:8000/Dashboard",{
-            credentials: 'include',
-            method: 'GET',
-        })
-        const reponse = await res.json()
-        setPost(await reponse.result)
-        console.log(Post)
-    }   
 
  
   return (
@@ -33,6 +34,7 @@ function FeedPage ({forwardUsername})  {
             <button onClick={() => setRefreshCount(refreshCount + 1)}>refresh</button>
         </div>    
         {Post && Post.length && Post.map((post) => {
+            var string 
             return (<div className="feedWrapper">
                 <div className='feedTop'>
                     <div className="feedTopLeft">      

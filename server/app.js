@@ -9,7 +9,7 @@ const port = process.env.PORT || 8000
 // const upload= multer({storage:multer.memoryStorage({})})
 const storage= multer.diskStorage({
     destination:(req,file,cb)=>{
-      cb(null,'../woof-woof/public/uploads')
+      cb(null,'./public/images')
     },
     filename:(req,file,cb)=>{
       cb(null,new Date().toISOString().replace(/:/g, '-')+file.originalname)
@@ -19,7 +19,7 @@ const storage= multer.diskStorage({
     storage:storage,
     // dest: './public/images'
   })
-
+app.use(express.static('./public/images'))
 app.use(cors({
     origin: 'http://localhost:3000',
     credentials: true
@@ -128,7 +128,7 @@ app.post('/Upload',upload.single('Pic'), async (req,res) => {
 })
 
 app.get('/Dashboard', async (req,res) => {
-    
+    console.log("yes")
     let result = [];
     try {
         const connection =  await pool.getConnection();
@@ -137,6 +137,7 @@ app.get('/Dashboard', async (req,res) => {
         }
         
         result =  await connection.query(`SELECT * FROM animals`);
+        console.log(await result)
         if(!result || result.length == 0) {
             return res.status(500).json({message: "no result"});
         }
