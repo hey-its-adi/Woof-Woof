@@ -9,8 +9,7 @@ function UploadPage ({forwardUsername}) {
     const [Phone, setPhone] = useState('');
     const [Vaccination, setVaccination] = useState('');
     const [Pic, setPic] = useState('');
-    const [Uname,setUname]= useState('')
-    const [Render, setRender] = useState('');
+
    
     async function submitHandler(event,onSubmitProps){
         event.preventDefault();
