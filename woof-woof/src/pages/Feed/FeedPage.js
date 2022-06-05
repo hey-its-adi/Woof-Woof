@@ -32,7 +32,7 @@ function FeedPage ({forwardUsername})  {
         <div className="refresh">
             <button onClick={() => setRefreshCount(refreshCount + 1)}>refresh</button>
         </div>    
-        {Post.length && Post.map((post) => {
+        {Post && Post.length && Post.map((post) => {
             return (<div className="feedWrapper">
                 <div className='feedTop'>
                     <div className="feedTopLeft">      
