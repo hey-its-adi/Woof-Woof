@@ -106,11 +106,10 @@ app.post('/Upload',upload.single('Pic'), async (req,res) => {
     const image= req.file.path;
     const input3 = req.body;
     console.log(input3);
-   
     pool.getConnection((err,connection) => {
         if(err) throw err
         console.log(`connected as id ${connection.threadId}`)
-        connection.query(`INSERT INTO animals (name,location,phone,vaccine,fname) VALUES('${input3.name}','${input3.location}','${input3.phone}','${input3.vaccination}','${image}')`,(err,rows) => {
+        connection.query(`INSERT INTO animals (name,user,location,phone,vaccine,fname) VALUES('${input3.name}','${input3.uname}','${input3.location}','${input3.phone}','${input3.vaccination}','${image}')`,(err,rows) => {
             connection.release() 
 
             if(!err)
