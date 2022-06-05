@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
-import AppDashboard from './AppDashboardNavigation'
-import AppMainNavigation from './pages/MainDashboard/AppMainNavigation'
+import AppDashboard from './pages/MainDashboard/AppDashboardNavigation'
+import AppMainNavigation from './pages/HomeNavigation/AppMainNavigation'
 
 
 function App() {

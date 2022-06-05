@@ -1,10 +1,10 @@
 import React from 'react';
 import {BrowserRouter as Router,Route,Routes} from 'react-router-dom';
-import FeedPage from './pages/Feed/FeedPage'
-import DashboardNavigation from './components/layout/DashboardNavigation';
+import FeedPage from '../Feed/FeedPage'
+import DashboardNavigation from './DashboardNavigation';
 import classes from "./App.module.css"
-import UploadPage from './pages/Upload/UploadPage';
-import ProfilePage from './pages/Profile/ProfilePage';
+import UploadPage from '../Upload/UploadPage';
+import ProfilePage from '../Profile/ProfilePage';
 
 function AppDashboard({forwardUsername}) {
 return(
