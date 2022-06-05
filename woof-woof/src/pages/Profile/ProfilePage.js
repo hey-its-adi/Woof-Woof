@@ -39,6 +39,9 @@ console.log(forwardUsername.username)
         <button onClick={() => setRefreshCount(refreshCount + 1)}>refresh</button>
     </div>    
     {Post && Post.length && Post.map((post) => {
+                var string = post.fname;
+                var new_string = string.replace("publicimages","");
+                var new_string1 = 'http://localhost:8000/'+new_string;
         return (<div className="feedWrapper">
             <div className='feedTop'>
                 <div className="feedTopLeft">      
@@ -50,7 +53,7 @@ console.log(forwardUsername.username)
                 </div>
             </div>
             <div className="feedCenter">
-                <img src='uploads/2022-06-05T15-34-47.096Zkitten.png' alt='' className='feedImg'/><br/>
+                <img src={new_string1} alt='' className='feedImg'/><br/>
                 <div className='feedCenterBottom'>
                     <span className="feedBreedName"><SiDatadog/><h5>{post.name}</h5></span>
                     <span className="feedLocation"><GoLocation/><h5>{post.location}</h5></span>
