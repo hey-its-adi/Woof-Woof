@@ -42,7 +42,7 @@ function FeedPage ({forwardUsername,refreshCount,setRefreshCount})  {
                 <div className='feedTop'>
                     <div className="feedTopLeft">      
                         <span className="feedUserName">{post.user}</span>
-                        <span className="feedTime">5 mins ago</span>
+                        <span className="feedTime">{post.adate}</span>
                     </div>
                     <div className="feedTopRight">
                         <FiMoreVertical/>

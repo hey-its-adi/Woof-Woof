@@ -6,6 +6,7 @@ import {GoLocation} from 'react-icons/go'
 import {MdOutlineContactPhone} from 'react-icons/md'
 import {TbVaccine} from 'react-icons/tb'
 import {useEffect,useState} from 'react'
+import Pop from './Pop'
 
 function ProfilePage  ({forwardUsername})  {
   const [Post, setPost] = useState([]);
@@ -65,6 +66,7 @@ console.log(forwardUsername.username)
                 <span className="feedLike"><FcLike/></span>
                 <span className="feedLikeCounter">20 People Liked it</span>
             </div>
+            <Pop/>
         </div>);
     })} 
 
