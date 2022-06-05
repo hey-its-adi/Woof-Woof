@@ -21,7 +21,8 @@ const storage= multer.diskStorage({
   })
 
 app.use(cors({
-    origin: 'http://localhost:3000'
+    origin: 'http://localhost:3000',
+    credentials: true
 }))
 
 app.use(bodyParser.urlencoded({extended:false}))
@@ -68,7 +69,8 @@ app.post('/signup', (req,res) => {
 
 app.post('/login', async (req,res) => {
     const input2 = req.body;
-    console.log(input2);
+
+    let result1 = [];
     
     try {
         const connection =  await pool.getConnection();
@@ -77,10 +79,13 @@ app.post('/login', async (req,res) => {
         }
         
         const result =  await connection.query(`SELECT password FROM users WHERE email='${input2.email}'`);
+        result1 = await connection.query(`SELECT name FROM users WHERE email='${input2.email}'`)
         if(!result || result.length == 0) {
             return res.status(500).json({message: "no result"});
         }
-
+        if(!result1 || result1.length == 0) {
+            return res.status(500).json({message: "no result"});
+        }
         console.log(result[0].password)
         if(result[0].password !== input2.password) {
             return res.status(401).json({message: "unauthorized"});
@@ -91,7 +96,7 @@ app.post('/login', async (req,res) => {
 
     }
 
-    return res.status(200).json({message: "logged in"});
+    return res.status(200).json({result1});
 
 })
 
@@ -123,14 +128,16 @@ app.post('/Upload',upload.single('Pic'), async (req,res) => {
 
 })
 
-app.post('/Dashboard', async (req,res) => {
+app.get('/Dashboard', async (req,res) => {
+    
+    let result = [];
     try {
         const connection =  await pool.getConnection();
         if(!connection) {
             return res.status(500).json({message: "DB connect fail"});
         }
         
-        const result =  await connection.query(`SELECT * FROM animals`);
+        result =  await connection.query(`SELECT * FROM animals`);
         if(!result || result.length == 0) {
             return res.status(500).json({message: "no result"});
         }
@@ -139,7 +146,7 @@ app.post('/Dashboard', async (req,res) => {
 
     }
 
-    return res.status(200).json({message: "got it"});
+    return res.status(200).json({result});
 
 })
 function setValue(value) {

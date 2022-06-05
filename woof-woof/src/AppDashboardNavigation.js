@@ -5,17 +5,17 @@ import DashboardNavigation from './components/layout/DashboardNavigation';
 import classes from "./App.module.css"
 import UploadPage from './pages/Upload/UploadPage';
 
-function AppDashboard() {
+function AppDashboard({forwardUsername}) {
 return(
       <div className={classes.AppContainer}>        
         <Router> 
         <DashboardNavigation/> 
         <Routes>
-          <Route path='/Upload' element={<UploadPage/>}/>
+          <Route path='/Upload' element={<UploadPage forwardUsername={forwardUsername}/>}/>
           <Route path='/Profile'/>
           <Route path='/Achievments'/>
-          <Route path='/Dashboard' element={<FeedPage/>}/>
-          <Route path='*' element={<FeedPage/>}/>
+          <Route path='/Dashboard' element={<FeedPage forwardUsername={forwardUsername}/>}/>
+          <Route path='*' element={<FeedPage forwardUsername={forwardUsername}/>}/>
       </Routes>
         </Router>
       </div>

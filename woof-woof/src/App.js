@@ -4,13 +4,16 @@ import AppMainNavigation from './AppMainNavigation'
 
 
 function App() {
-    const [login, setlogin] = useState(false)
+    const [login, setlogin] = useState({
+      render: false,
+      username: null,
+    })
 
   return (
     
     <div>
-        {!login  && <AppMainNavigation setRender={setlogin}/>} 
-        {login && <AppDashboard/>} 
+        {!login.render  && <AppMainNavigation setRender={setlogin}/>} 
+        {login.render && <AppDashboard forwardUsername={login}/>} 
     </div>
   )
 }

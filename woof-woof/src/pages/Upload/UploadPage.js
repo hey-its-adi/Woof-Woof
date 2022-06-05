@@ -2,12 +2,13 @@ import React from 'react'
 import classes from './UploadPage.module.css'
 import {useState} from 'react';
 
-function UploadPage () {
+function UploadPage ({forwarUsername}) {
     const [Name, setName] = useState('');
     const [Location, setLocation] = useState('');
     const [Phone, setPhone] = useState('');
     const [Vaccination, setVaccination] = useState('');
     const [Pic, setPic] = useState('');
+    
     const [Render, setRender] = useState('');
         
  

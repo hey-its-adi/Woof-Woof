@@ -57,6 +57,7 @@
 .feedCenterBottom h5 {
     display: inline-block;
     margin: 0 5px;
+    color: black;
 }
 .feedBreedName{
     display: inline-block;

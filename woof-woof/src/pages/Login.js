@@ -1,6 +1,7 @@
 import classes from './Login.module.css'
 import React, {useState} from 'react';
 
+
 function LoginPage({setRender}) {
   const [email,setEmail]=useState(null);
   const [password,setPassword]=useState(null);
@@ -15,6 +16,7 @@ function LoginPage({setRender}) {
             email,password
     }
     let res =  await fetch("http://localhost:8000/login",{
+          credentials: 'include',
             method : 'POST',
             headers :{
                     'Accept' : 'application/json',
@@ -22,8 +24,13 @@ function LoginPage({setRender}) {
             },
             body : JSON.stringify(formData)
     })
+    let response = await res.json()
+    let username = await response.result1[0].name;
     if(res.ok) {
-      setRender(true);
+      setRender({
+        render: true,
+        username: username,
+      });
       console.log("logged");
     } else {
       console.log("try again")
