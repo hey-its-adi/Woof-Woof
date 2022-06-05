@@ -13,7 +13,7 @@
 }
 
 .Wrapper{
-  background-color: rgb(255, 234, 172);
+  background-color: rgb(236, 173, 55);
   padding: 10px;
   margin: 30px auto;
   border-radius: 10px;
@@ -38,7 +38,8 @@
 .control select
 .control option {
   display: block;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Cinzel', serif;
+  font-style: bold;
   text-align: center;
   border-radius: 4px;
   border: 1px solid rgb(252, 236, 56);
@@ -46,6 +47,14 @@
   width: 100%;
 
 }
+@import url('https://fonts.googleapis.com/css2?family=Cinzel&display=swap');
+.control label {
+  font-family: 'Cinzel', serif;
+  color: rgb(255, 255, 255);
+ 
+}
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -60,7 +69,7 @@ input::-webkit-inner-spin-button {
 .actions button {
   font: inherit;
   cursor: pointer;
-  background-color: #ee9f44;
+  background-color: #fbcf70;
   color: white;
   padding: 0.5rem 1.5rem;
   border: 1px solid #fabc64;
