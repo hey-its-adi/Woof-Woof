@@ -9,7 +9,7 @@ const port = process.env.PORT || 8000
 // const upload= multer({storage:multer.memoryStorage({})})
 const storage= multer.diskStorage({
     destination:(req,file,cb)=>{
-      cb(null,'./public/images')
+      cb(null,'../woof-woof/public/uploads')
     },
     filename:(req,file,cb)=>{
       cb(null,new Date().toISOString().replace(/:/g, '-')+file.originalname)

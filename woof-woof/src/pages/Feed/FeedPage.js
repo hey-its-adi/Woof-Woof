@@ -20,7 +20,7 @@ const FeedPage = () => {
                 </div>
             </div>
             <div className="feedCenter">
-                <img src='/5.jpg' alt='' className='feedImg'/><br/>
+                <img src='/uploads/2022-06-05T07-18-34.732ZAgriculture.jpg' alt='' className='feedImg'/><br/>
                 <div className='feedCenterBottom'>
                     <span className="feedBreedName"><SiDatadog/><h5>Golden retriever</h5></span>
                     <span className="feedLocation"><GoLocation/><h5>chennai</h5></span>
