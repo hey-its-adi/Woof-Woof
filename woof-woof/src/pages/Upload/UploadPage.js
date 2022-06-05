@@ -8,7 +8,7 @@ function UploadPage ({forwarUsername}) {
     const [Phone, setPhone] = useState('');
     const [Vaccination, setVaccination] = useState('');
     const [Pic, setPic] = useState('');
-    
+    const [Uname,setUname]= useState('')
     const [Render, setRender] = useState('');
         
  
@@ -24,6 +24,7 @@ function UploadPage ({forwarUsername}) {
         fd.append('vaccination',Vaccination)
         fd.append('phone',Phone)
         fd.append('location',Location)
+        fd.append('uname',Uname)
         console.log(Pic);
         let res =  await fetch("http://localhost:8000/Upload",{
                 method : 'POST',
@@ -31,7 +32,7 @@ function UploadPage ({forwarUsername}) {
                 //         'Accept' : 'application/json',
                 //         'Content-Type': 'application/json'
                 // },*/}
-                body : fd
+                body : fd,forwarUsername
         })
         console.log(res);
         if(res.ok){     
@@ -43,6 +44,11 @@ function UploadPage ({forwarUsername}) {
     <div className={classes.Upload}>
         <div className={classes.Wrapper}>
         <form onSubmit={submitHandler} method="POST" className={classes.form} enctype="multipart/form-data" action='/Upload'>
+        
+                <div className={classes.control}>    
+                        <label htmlFor="user">Your Name</label>
+                        <input type="text" value ={Uname} name="user" id="user" size="30" maxLength={30} placeholder="Enter the Your Name" required onChange={(e)=> setUname(e.target.value)}/>
+                </div>               
                 <div className={classes.control}>    
                         <label htmlFor="name">Breed Name</label>
                         <input type="text" value ={Name} name="name" id="name" size="30" maxLength={30} placeholder="Enter the breed name" required onChange={(e)=> setName(e.target.value)}/>
