@@ -35,7 +35,8 @@ function LoginPage({setRender}) {
   }
 
     return (
-      <div className={classes.wrapper}>
+      <div className={classes.Login}>
+      <div className={classes.Wrapper}>
         <form method="POST" className={classes.form} onSubmit={submitHandler}>
           <div >
               <div className={classes.control}>
@@ -51,6 +52,7 @@ function LoginPage({setRender}) {
               </div>
           </div>
         </form>
+      </div>
       </div>
     )
   }

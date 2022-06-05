@@ -1,8 +1,8 @@
 .AppContainer{
     max-width: 2000px;
-    max-height: auto;
+    min-height: 700px;
     margin: 0 auto;
     overflow-y: hidden;
-    background: rgb(223,126,74);
     background: linear-gradient(142deg, rgba(223,126,74,1) 0%, rgba(244,200,79,0.9752275910364145) 38%);
+    
 }

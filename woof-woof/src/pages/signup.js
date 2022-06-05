@@ -27,7 +27,8 @@ function SignUp(){
         
         }
         return(
-        <div className={classes.wrapper}>
+        <div className={classes.SignUp}>
+        <div className={classes.Wrapper}>
 
                 <form onSubmit={submitHandler} method="POST" className={classes.form}>
                 <div className={classes.control}>    
@@ -62,7 +63,7 @@ function SignUp(){
                         <button type="submit" id="submit" name="submit" onSubmit={submitHandler}>SIGN UP</button>
                 </div>
                 </form>
-
+      </div>
       </div>
     )
 }
