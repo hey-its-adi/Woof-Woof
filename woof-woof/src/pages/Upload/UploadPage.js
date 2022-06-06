@@ -3,7 +3,7 @@ import classes from './UploadPage.module.css'
 import {useState} from 'react';
 
 function UploadPage ({forwardUsername}) {
-    console.log(forwardUsername.username)
+
     const [Name, setName] = useState('');
     const [Location, setLocation] = useState('');
     const [Phone, setPhone] = useState('');
@@ -23,7 +23,7 @@ function UploadPage ({forwardUsername}) {
         fd.append('location',Location)
         fd.append('uname',forwardUsername.username)
 
-        console.log(Pic);
+        console.log(fd);
         let res =  await fetch("http://localhost:8000/Upload",{
                 method : 'POST',
                 // {/*headers :{
@@ -72,7 +72,7 @@ function UploadPage ({forwardUsername}) {
                         <select id="vaccination" name="vaccination"required onChange={(e)=> setVaccination(e.target.value)}>
                         <option value='none' selected disabled hidden>Select an Option</option>
                         <option value="Vaccinated">Vaccinated</option>
-                        <option value="NotVaccinated">Not Vaccinated</option>
+                        <option value="Not-Vaccinated">Not Vaccinated</option>
                         </select>
                 </div>
                 <div  className={classes.control}>    

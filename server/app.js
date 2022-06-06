@@ -153,6 +153,9 @@ app.post('/Profile', async (req,res) => {
     
     const uinput = req.body
     let result = [];
+    let result1 = [];
+    let result2 = [];
+
     try {
         const connection =  await pool.getConnection();
         if(!connection) {
@@ -160,7 +163,15 @@ app.post('/Profile', async (req,res) => {
         }
         
         result =  await connection.query(`SELECT * FROM animals WHERE user='${uinput.uname}'`);
-        if(!result || result.length == 0) {
+        result1 = await connection.query(`SELECT * FROM fosters WHERE user='${uinput.uname}'`)
+        result2 = await connection.query(`SELECT * FROM fosters WHERE user='${uinput.uname}'`)
+        if(!result) {
+            return res.status(500).json({message: "no result"});
+        }
+        if(!result1) {
+            return res.status(500).json({message: "no result"});
+        }
+        if(!result2) {
             return res.status(500).json({message: "no result"});
         }
     } catch(err) {
@@ -168,7 +179,7 @@ app.post('/Profile', async (req,res) => {
 
     }
 
-    return res.status(200).json({result});
+    return res.status(200).json({result,result1,result2});
 
 })
 
@@ -210,10 +221,12 @@ app.get('/Achievements', async (req,res) => {
         
         result =  await connection.query(`SELECT * FROM adopters`);
         result1 = await connection.query(`SELECT * FROM fosters`)
-        if(!result || result.length == 0 ) {
+        console.log(result)
+        console.log(result1)
+        if(!result ) {
             return res.status(500).json({message: "no result"});
         }
-        if(!result1 || result1.length == 0) {
+        if(!result1) {
             return res.status(500).json({message: "no result"});
         }
     } catch(err) {

@@ -25,6 +25,7 @@ function ProfilePage  ({forwardUsername})  {
   }, [refreshCount])    
 
   const getPost = async ()=>{
+      console.log("getting post")
       const res = await fetch("http://localhost:8000/Profile",{
           credentials: 'include',
           method: 'POST',
@@ -33,11 +34,24 @@ function ProfilePage  ({forwardUsername})  {
             'Content-Type': 'application/json'
            },
           body : JSON.stringify({
-            "uname": forwardUsername.username
+            uname: forwardUsername.username
        })
       })
       const reponse = await res.json()
-      setPost(await reponse.result)
+      console.log(reponse)
+      if(reponse.result && reponse.result.length){
+        console.log("result")
+        setPost(await reponse.result)
+      }
+      if(reponse.result1 && reponse.result1.length){
+          console.log("result1")
+        setPost(await reponse.result1)
+      }
+      if(reponse.result2 && reponse.result2.length){
+          console.log("result2")
+        setPost(await reponse.result2)
+      }
+    
   }
   async function submitHandler(event,onSubmitProps){
     event.preventDefault();
@@ -50,6 +64,9 @@ function ProfilePage  ({forwardUsername})  {
     fd.append('phone',Phone)
     fd.append('User', User)
     fd.append('aid',Aid)?*/
+    if(!User || !Aid) {
+        return;
+    }
     const formData = {
         Auser,Phone,User,Aid,Fname,Status
     }
@@ -69,82 +86,81 @@ function ProfilePage  ({forwardUsername})  {
  
   return (
     <div className="feed">   
-    <div className="refresh">
-        <button onClick={() => setRefreshCount(refreshCount + 1)}>refresh</button>
-    </div>    
-
-    {Post && Post.length && Post.map((post) => {
-                string = post.fname;
-                var new_string = string.replace("publicimages","");
-                var new_string1 = 'http://localhost:8000/'+new_string;
-        return (<div className="feedWrapper">
-            <div className='feedTop'>
-                <div className="feedTopLeft">      
-                    <span className="feedUserName">{post.user}</span>
-                    <span className="feedTime">5 mins ago</span>
-                </div>
-                <div className="feedTopRight">
-                    <FiMoreVertical/>
-                </div>
-            </div>
-            <div className="feedCenter">
-                <img src={new_string1} alt='' className='feedImg' id='pimg'/><br/>
-                <div className='feedCenterBottom'>
-                    <span className="feedBreedName"><SiDatadog/><h5>{post.name}</h5></span>
-                    <span className="feedLocation"><GoLocation/><h5>{post.location}</h5></span>
-                    <span className="feedContact"><MdOutlineContactPhone/><h5>{post.phone}</h5></span>
-                    <span className="feedVaccination"><TbVaccine/><h5>{post.vaccine}</h5></span>     
-                </div> 
-            </div>
-            <div className="feedBottom">
-                <span className="feedLike"><FcLike/></span>
-                <span className="feedLikeCounter">20 People Liked it</span>
-            </div>
-            <div>
-                <Popup trigger={<button> Trigger</button>} position="right center">
-                <div className={classes.Upload}>
-                    <div className={classes.Wrapper}>
-                    <form onSubmit={submitHandler} method="POST" className={classes.form} enctype="multipart/form-data" action='/Upload'>
-                    <div className={classes.control}>    
-                                <label htmlFor="aid">Animal ID</label>
-                                <input type="text" value ={post.a_id} name="aid" id="paid"  size="30" maxLength={30} required disabled  />
-                            </div>                           
-                            <div className={classes.control}>    
-                                <label htmlFor="User">User Name</label>
-                                <input type="text" value ={post.user} name="user" id="puser"  size="30" maxLength={30} required disabled  />
-                            </div> 
-                            <div className={classes.control}>    
-                                    <label htmlFor="Auser">Adopter Name</label>
-                                    <input type="text" name="Auser" id="Auser" size="30" maxLength={30} placeholder="Enter the Adopter Name" required onChange={(e)=> setAuser(e.target.value)}/>
-                            </div>               
-
-
-                            <div  className={classes.control}>    
-                                    <label htmlFor="phone">Phone</label>
-                                    <input type="number" id="phone" name="phone" value={Phone} placeholder="Enter a valid Phone number" size="12" required onChange={(e)=> setPhone(e.target.value)}/>
-                            </div>     
-                            <div className={classes.control}>
-                                <label htmlFor="Status" >Status</label>
-                                <select id="status"  name="status" required onChange={(e)=> setStatus(e.target.value)}>
-                                <option value="none" selected disabled hidden>Select an Option</option>
-                                <option value="Adopt">Adopted</option>
-                                <option value="Foster">Fostered</option>
-                                </select>
-                            </div>
-                            <div className={classes.actions}>
-                                    <button type="submit" id="submit" name="submit" onSubmit={submitHandler}>SUBMIT</button>
-                            </div>
-                            </form>
+        <div className="refresh">
+            <button onClick={() => {console.log(refreshCount); setRefreshCount(refreshCount + 1)}}>refresh</button>
+        </div>    
+        {!Post || !Post.length && <div> No Uploads</div>}
+        {Post && Post.length ? Post.map((post) => {
+            string = post.fname;
+            var new_string = string.replace("publicimages","");
+            var new_string1 = 'http://localhost:8000/'+new_string;
+            return (<div className="feedWrapper">
+                <div className='feedTop'>
+                    <div className="feedTopLeft">      
+                        <span className="feedUserName">{post.user}</span>
+                        <span className="feedTime">5 mins ago</span>
+                    </div>
+                    <div className="feedTopRight">
+                        <FiMoreVertical/>
                     </div>
                 </div>
-                </Popup>
-            </div>
-        </div>);
-    })} 
+                <div className="feedCenter">
+                    <img src={new_string1} alt='' className='feedImg' id='pimg'/><br/>
+                    <div className='feedCenterBottom'>
+                        <span className="feedBreedName"><SiDatadog/><h5>{post.name}</h5></span>
+                        <span className="feedLocation"><GoLocation/><h5>{post.location}</h5></span>
+                        <span className="feedContact"><MdOutlineContactPhone/><h5>{post.phone}</h5></span>
+                        <span className="feedVaccination"><TbVaccine/><h5>{post.vaccine}</h5></span>     
+                    </div> 
+                </div>
+                <div className="feedBottom">
+                    <span className="feedLike"><FcLike/></span>
+                    <span className="feedLikeCounter">20 People Liked it</span>
+                </div>
+                <div>
+                    <Popup trigger={<button> Trigger</button>} position="right center">
+                    <div className={classes.Upload}>
+                        <div className={classes.Wrapper}>
+                        <form onSubmit={submitHandler} method="POST" className={classes.form} enctype="multipart/form-data" action='/Upload'>
+                        <div className={classes.control}>    
+                                    <label htmlFor="aid">Animal ID</label>
+                                    <input type="text" value ={post.a_id} name="aid" id="paid"  size="30" maxLength={30} required disabled  />
+                                </div>                           
+                                <div className={classes.control}>    
+                                    <label htmlFor="User">User Name</label>
+                                    <input type="text" value ={post.user} name="user" id="puser"  size="30" maxLength={30} required disabled  />
+                                </div> 
+                                <div className={classes.control}>    
+                                        <label htmlFor="Auser">Adopter Name</label>
+                                        <input type="text" name="Auser" id="Auser" size="30" maxLength={30} placeholder="Enter the Adopter Name" required onChange={(e)=> setAuser(e.target.value)}/>
+                                </div>               
 
-</div>
+
+                                <div  className={classes.control}>    
+                                        <label htmlFor="phone">Phone</label>
+                                        <input type="number" id="phone" name="phone" value={Phone} placeholder="Enter a valid Phone number" size="12" required onChange={(e)=> setPhone(e.target.value)}/>
+                                </div>     
+                                <div className={classes.control}>
+                                    <label htmlFor="Status" >Status</label>
+                                    <select id="status"  name="status" required onChange={(e)=> setStatus(e.target.value)}>
+                                    <option value="none" selected disabled hidden>Select an Option</option>
+                                    <option value="Adopt">Adopted</option>
+                                    <option value="Foster">Fostered</option>
+                                    </select>
+                                </div>
+                                <div className={classes.actions}>
+                                        <button type="submit" id="submit" name="submit" onSubmit={submitHandler}>SUBMIT</button>
+                                </div>
+                                </form>
+                        </div>
+                    </div>
+                    </Popup>
+                </div>
+            </div>);
+        }) :
+        <div></div>} 
+    </div>
   )
-
 }
 
 export default ProfilePage;
