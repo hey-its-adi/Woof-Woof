@@ -1,0 +1,14 @@
+.page img{
+    
+        display:flex;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 3%;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(255, 255, 255);
+        padding-left: 1.5%;
+        padding-right: 1.5%;
+        width: 45%;
+
+}
