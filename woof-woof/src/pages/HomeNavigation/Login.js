@@ -15,7 +15,7 @@ function LoginPage({setRender}) {
     const formData = {
             email,password
     }
-    let res =  await fetch("http://localhost:8000/login",{
+    let res = await fetch("http://localhost:8000/login",{
           credentials: 'include',
             method : 'POST',
             headers :{
@@ -25,6 +25,7 @@ function LoginPage({setRender}) {
             body : JSON.stringify(formData)
     })
     let response = await res.json()
+    console.log(await response)
     let username = await response.result1[0].name;
     if(res.ok) {
       setRender({
