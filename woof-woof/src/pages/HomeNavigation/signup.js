@@ -51,6 +51,7 @@ function SignUp(){
                 <div className={classes.control}>
                         <label htmlFor="user" >User Type</label>
                         <select id="user" name="user" value={UserType} onChange={(e)=> setUserType(e.target.value)}>
+                        <option value="none" selected disabled hidden>Select an Option</option>
                         <option value="Individual">Individual</option>
                         <option value="Organisation">Organisation</option>
                         </select>

@@ -13,7 +13,7 @@ function App() {
     
     <div>
         {!login.render  && <AppMainNavigation setRender={setlogin}/>} 
-        {login.render && <AppDashboard forwardUsername={login}/>} 
+        {login.render && <AppDashboard  setRender={setlogin} forwardUsername={login}/>} 
     </div>
   )
 }

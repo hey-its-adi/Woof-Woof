@@ -9,7 +9,7 @@ function UploadPage ({forwardUsername}) {
     const [Phone, setPhone] = useState('');
     const [Vaccination, setVaccination] = useState('');
     const [Pic, setPic] = useState('');
-
+    const [inpKey, setinpKey] = useState('')      
    
     async function submitHandler(event,onSubmitProps){
         event.preventDefault();
@@ -35,8 +35,15 @@ function UploadPage ({forwardUsername}) {
         console.log(res);
         if(res.ok){     
         }
+        setName('');
+        setLocation('');
+        setPhone('');
+        setVaccination('')
+        let randomString =Math.random().toString(36)
+        setinpKey(randomString);
+
     }
-  
+    
     
   return (
     <div className={classes.Upload}>
@@ -62,17 +69,16 @@ function UploadPage ({forwardUsername}) {
                 </div>       
                 <div className={classes.control}>
                         <label htmlFor="vaccination" >Vaccination status</label>
-                        <select id="vaccination"  name="vaccination" required onChange={(e)=> setVaccination(e.target.value)}>
-                        <option value="none" selected disabled hidden>Select an Option</option>
+                        <select id="vaccination" name="vaccination"required onChange={(e)=> setVaccination(e.target.value)}>
+                        <option value='none' selected disabled hidden>Select an Option</option>
                         <option value="Vaccinated">Vaccinated</option>
                         <option value="NotVaccinated">Not Vaccinated</option>
                         </select>
                 </div>
                 <div  className={classes.control}>    
                         <label htmlFor="Pic">Picture</label>
-                        <input type="file" id="pic" name="Pic"  required onChange={(e)=> setPic(e.target.files[0])}/>
+                        <input type="file" id="pic" name="Pic" key={inpKey} required onChange={(e)=> setPic(e.target.files[0])}/>
                 </div>   
-        
                 <div className={classes.actions}>
                         <button type="submit" id="submit" name="submit" onSubmit={submitHandler}>SUBMIT</button>
                 </div>

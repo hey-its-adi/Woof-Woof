@@ -64,6 +64,7 @@ function ProfilePage  ({forwardUsername})  {
     })
     const result = await res.json();
     console.log(result);
+
     }
  
   return (
@@ -71,6 +72,7 @@ function ProfilePage  ({forwardUsername})  {
     <div className="refresh">
         <button onClick={() => setRefreshCount(refreshCount + 1)}>refresh</button>
     </div>    
+
     {Post && Post.length && Post.map((post) => {
                 string = post.fname;
                 var new_string = string.replace("publicimages","");
