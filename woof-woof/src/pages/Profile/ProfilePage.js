@@ -19,6 +19,8 @@ function ProfilePage  ({forwardUsername})  {
   const [Aid,setAid] = useState('');
   const [Fname, setFname] = useState('');
   const [Status, setStatus] = useState('');
+  const [Post1,setPost1] = useState([]);
+  const [Post2,setPost2] = useState([]);
   var string;
   useEffect(() => {
        getPost();
@@ -26,6 +28,7 @@ function ProfilePage  ({forwardUsername})  {
 
   const getPost = async ()=>{
       console.log("getting post")
+        
       const res = await fetch("http://localhost:8000/Profile",{
           credentials: 'include',
           method: 'POST',
@@ -37,19 +40,25 @@ function ProfilePage  ({forwardUsername})  {
             uname: forwardUsername.username
        })
       })
+      console.log(forwardUsername.username)
       const reponse = await res.json()
       console.log(reponse)
+      let res1 = reponse.result1
+      let res2 = reponse.result2
+      console.log(res1);
       if(reponse.result && reponse.result.length){
         console.log("result")
         setPost(await reponse.result)
       }
       if(reponse.result1 && reponse.result1.length){
-          console.log("result1")
-        setPost(await reponse.result1)
+        console.log("result1")
+        setPost1(res1)
+        console.log(Post1)
       }
       if(reponse.result2 && reponse.result2.length){
-          console.log("result2")
-        setPost(await reponse.result2)
+        console.log("result2")
+        setPost2(res2)
+      
       }
     
   }
@@ -81,7 +90,8 @@ function ProfilePage  ({forwardUsername})  {
     })
     const result = await res.json();
     console.log(result);
-
+    setAuser('')
+    setPhone('')
     }
  
   return (
@@ -89,7 +99,7 @@ function ProfilePage  ({forwardUsername})  {
         <div className="refresh">
             <button onClick={() => {console.log(refreshCount); setRefreshCount(refreshCount + 1)}}>refresh</button>
         </div>    
-        {!Post || !Post.length && <div> No Uploads</div>}
+        {!Post || !Post.length && <div></div>}
         {Post && Post.length ? Post.map((post) => {
             string = post.fname;
             var new_string = string.replace("publicimages","");
@@ -155,6 +165,65 @@ function ProfilePage  ({forwardUsername})  {
                         </div>
                     </div>
                     </Popup>
+                </div>
+            </div>);
+        }) :
+        <div></div>} 
+
+
+{!Post1 || !Post1.length && <div></div>}
+        {Post1 && Post1.length ? Post1.map((post) => {
+
+            return (<div className="feedWrapper">
+                <div className='feedTop'>
+                    <div className="feedTopLeft">      
+                        <span className="feedUserName">{post.user}</span>
+                        <span className="feedTime">5 mins ago</span>
+                    </div>
+                    <div className="feedTopRight">
+                        <FiMoreVertical/>
+                    </div>
+                </div>
+                <div className="feedCenter">
+                    <img src={post.fname} alt='' className='feedImg' id='pimg'/><br/>
+                    <div className='feedCenterBottom'>
+                        <span className="feedBreedName"><SiDatadog/><h5>Adopter: {post.adname}</h5></span>       
+                        <span className="feedContact"><MdOutlineContactPhone/><h5>Adopter Phone:{post.adphone}</h5></span>
+                       
+                    </div> 
+                </div>
+                <div className="feedBottom">
+                    <span className="feedLike"><FcLike/></span>
+                    <span className="feedLikeCounter">20 People Liked it</span>
+                </div>
+            </div>);
+        }) :
+        <div></div>} 
+
+        {!Post2 || !Post2.length && <div></div>}
+        {Post2 && Post2.length ? Post2.map((post) => {
+
+            return (<div className="feedWrapper">
+                <div className='feedTop'>
+                    <div className="feedTopLeft">      
+                        <span className="feedUserName">{post.user}</span>
+                        <span className="feedTime">5 mins ago</span>
+                    </div>
+                    <div className="feedTopRight">
+                        <FiMoreVertical/>
+                    </div>
+                </div>
+                <div className="feedCenter">
+                    <img src={post.fname} alt='' className='feedImg' id='pimg'/><br/>
+                    <div className='feedCenterBottom'>
+                        <span className="feedBreedName"><SiDatadog/><h5>Foster Name: {post.fosname}</h5></span>       
+                        <span className="feedContact"><MdOutlineContactPhone/><h5>Foster Phone:{post.fosphone}</h5></span>
+                       
+                    </div> 
+                </div>
+                <div className="feedBottom">
+                    <span className="feedLike"><FcLike/></span>
+                    <span className="feedLikeCounter">20 People Liked it</span>
                 </div>
             </div>);
         }) :

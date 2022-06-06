@@ -86,7 +86,7 @@ app.post('/login', async (req,res) => {
         if(!result1 || result1.length == 0) {
             return res.status(500).json({message: "no result"});
         }
-        console.log(result[0].password)
+
         if(result[0].password !== input2.password) {
             return res.status(401).json({message: "unauthorized"});
         }
@@ -127,7 +127,7 @@ app.post('/Upload',upload.single('Pic'), async (req,res) => {
 })
 
 app.get('/Dashboard', async (req,res) => {
-    console.log("yes")
+
     let result = [];
     try {
         const connection =  await pool.getConnection();
@@ -163,7 +163,7 @@ app.post('/Profile', async (req,res) => {
         }
         
         result =  await connection.query(`SELECT * FROM animals WHERE user='${uinput.uname}'`);
-        result1 = await connection.query(`SELECT * FROM fosters WHERE user='${uinput.uname}'`)
+        result1 = await connection.query(`SELECT * FROM adopters WHERE user='${uinput.uname}'`)
         result2 = await connection.query(`SELECT * FROM fosters WHERE user='${uinput.uname}'`)
         if(!result) {
             return res.status(500).json({message: "no result"});
@@ -184,7 +184,7 @@ app.post('/Profile', async (req,res) => {
 })
 
 app.post('/AdopterPop', async (req,res) => {
-    console.log(req.body)
+    
     const ainput = req.body
     const status =req.body.Status
     try {
@@ -221,8 +221,7 @@ app.get('/Achievements', async (req,res) => {
         
         result =  await connection.query(`SELECT * FROM adopters`);
         result1 = await connection.query(`SELECT * FROM fosters`)
-        console.log(result)
-        console.log(result1)
+
         if(!result ) {
             return res.status(500).json({message: "no result"});
         }
