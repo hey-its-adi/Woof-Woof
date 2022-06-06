@@ -15,8 +15,11 @@ function ProfilePage  ({forwardUsername})  {
   const [refreshCount, setRefreshCount] = useState(0);
   const [Phone, setPhone] = useState('');
   const [Auser,setAuser] = useState('');
-  const [User, setUser] = useState('')
+  const [User, setUser] = useState('');
   const [Aid,setAid] = useState('');
+  const [Fname, setFname] = useState('');
+  const [Status, setStatus] = useState('');
+  var string;
   useEffect(() => {
        getPost();
   }, [refreshCount])    
@@ -38,8 +41,9 @@ function ProfilePage  ({forwardUsername})  {
   }
   async function submitHandler(event,onSubmitProps){
     event.preventDefault();
-    setUser(document.getElementById('user').value)
-    setAid(document.getElementById('aid').value)
+    setUser(document.getElementById('puser').value)
+    setAid(document.getElementById('paid').value)
+    setFname(document.getElementById('pimg').src)
 
   /*  let fd= new FormData()
     fd.append('Auser',Auser)
@@ -47,7 +51,7 @@ function ProfilePage  ({forwardUsername})  {
     fd.append('User', User)
     fd.append('aid',Aid)?*/
     const formData = {
-        Auser,Phone,User,Aid
+        Auser,Phone,User,Aid,Fname,Status
     }
     console.log(formData)
     let res =  await fetch("http://localhost:8000/AdopterPop",{
@@ -68,7 +72,7 @@ function ProfilePage  ({forwardUsername})  {
         <button onClick={() => setRefreshCount(refreshCount + 1)}>refresh</button>
     </div>    
     {Post && Post.length && Post.map((post) => {
-                var string = post.fname;
+                string = post.fname;
                 var new_string = string.replace("publicimages","");
                 var new_string1 = 'http://localhost:8000/'+new_string;
         return (<div className="feedWrapper">
@@ -82,7 +86,7 @@ function ProfilePage  ({forwardUsername})  {
                 </div>
             </div>
             <div className="feedCenter">
-                <img src={new_string1} alt='' className='feedImg'/><br/>
+                <img src={new_string1} alt='' className='feedImg' id='pimg'/><br/>
                 <div className='feedCenterBottom'>
                     <span className="feedBreedName"><SiDatadog/><h5>{post.name}</h5></span>
                     <span className="feedLocation"><GoLocation/><h5>{post.location}</h5></span>
@@ -101,11 +105,11 @@ function ProfilePage  ({forwardUsername})  {
                     <form onSubmit={submitHandler} method="POST" className={classes.form} enctype="multipart/form-data" action='/Upload'>
                     <div className={classes.control}>    
                                 <label htmlFor="aid">Animal ID</label>
-                                <input type="text" value ={post.a_id} name="aid" id="aid"  size="30" maxLength={30} required disabled  />
+                                <input type="text" value ={post.a_id} name="aid" id="paid"  size="30" maxLength={30} required disabled  />
                             </div>                           
                             <div className={classes.control}>    
                                 <label htmlFor="User">User Name</label>
-                                <input type="text" value ={post.user} name="user" id="user"  size="30" maxLength={30} required disabled  />
+                                <input type="text" value ={post.user} name="user" id="puser"  size="30" maxLength={30} required disabled  />
                             </div> 
                             <div className={classes.control}>    
                                     <label htmlFor="Auser">Adopter Name</label>
@@ -116,7 +120,15 @@ function ProfilePage  ({forwardUsername})  {
                             <div  className={classes.control}>    
                                     <label htmlFor="phone">Phone</label>
                                     <input type="number" id="phone" name="phone" value={Phone} placeholder="Enter a valid Phone number" size="12" required onChange={(e)=> setPhone(e.target.value)}/>
-                            </div>       
+                            </div>     
+                            <div className={classes.control}>
+                                <label htmlFor="Status" >Status</label>
+                                <select id="status"  name="status" required onChange={(e)=> setStatus(e.target.value)}>
+                                <option value="none" selected disabled hidden>Select an Option</option>
+                                <option value="Adopt">Adopted</option>
+                                <option value="Foster">Fostered</option>
+                                </select>
+                            </div>
                             <div className={classes.actions}>
                                     <button type="submit" id="submit" name="submit" onSubmit={submitHandler}>SUBMIT</button>
                             </div>

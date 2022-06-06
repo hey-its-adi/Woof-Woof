@@ -45,7 +45,7 @@ connectDB();
 
 app.post('/signup', (req,res) => {
     const input = req.body;
-    console.log(input);
+
    
     pool.getConnection((err,connection) => {
         if(err) throw err
@@ -102,10 +102,9 @@ app.post('/login', async (req,res) => {
 
 app.post('/Upload',upload.single('Pic'), async (req,res) => {
  
-    console.log(req.file)
+
     const image= req.file.path;
     const input3 = req.body;
-    console.log(input3);
     pool.getConnection((err,connection) => {
         if(err) throw err
         console.log(`connected as id ${connection.threadId}`)
@@ -137,7 +136,7 @@ app.get('/Dashboard', async (req,res) => {
         }
         
         result =  await connection.query(`SELECT * FROM animals`);
-        console.log(await result)
+       
         if(!result || result.length == 0) {
             return res.status(500).json({message: "no result"});
         }
@@ -152,7 +151,7 @@ app.get('/Dashboard', async (req,res) => {
 
 app.post('/Profile', async (req,res) => {
     
-   const uinput = req.body
+    const uinput = req.body
     let result = [];
     try {
         const connection =  await pool.getConnection();
@@ -174,18 +173,22 @@ app.post('/Profile', async (req,res) => {
 })
 
 app.post('/AdopterPop', async (req,res) => {
-    
-
-   const ainput = req.body
+    console.log(req.body)
+    const ainput = req.body
+    const status =req.body.Status
     try {
         const connection =  await pool.getConnection();
         if(!connection) {
             return res.status(500).json({message: "DB connect fail"});
         }
-        result1 =  await connection.query(`INSERT INTO adopters (a_id,adname,adphone,user) VALUES('${ainput.Aid}','${ainput.Auser}','${ainput.Phone}','${ainput.User}')`);
-         if(!result || result.length == 0) {
-            return res.status(500).json({message: "no result"});
+        if( status == 'Adopt'){
+            
+            result1 =  await connection.query(`INSERT INTO adopters (a_id,adname,adphone,user,fname) VALUES('${ainput.Aid}','${ainput.Auser}','${ainput.Phone}','${ainput.User}','${ainput.Fname}')`);
         }
+        else{
+            result1 =  await connection.query(`INSERT INTO fosters (a_id,fosname,fosphone,user,fname) VALUES('${ainput.Aid}','${ainput.Auser}','${ainput.Phone}','${ainput.User}','${ainput.Fname}')`);
+        }
+
     } catch(err) {
         console.log(err);
 
