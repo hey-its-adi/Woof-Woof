@@ -15,7 +15,8 @@ function ProfilePage  ({forwardUsername})  {
   const [refreshCount, setRefreshCount] = useState(0);
   const [Phone, setPhone] = useState('');
   const [Auser,setAuser] = useState('');
-  const [User,setUser]=useState('')
+  const [User, setUser] = useState('')
+  const [Aid,setAid] = useState('');
   useEffect(() => {
        getPost();
   }, [refreshCount])    
@@ -37,20 +38,28 @@ function ProfilePage  ({forwardUsername})  {
   }
   async function submitHandler(event,onSubmitProps){
     event.preventDefault();
+    setUser(document.getElementById('user').value)
+    setAid(document.getElementById('aid').value)
 
-
-    let fd= new FormData()
+  /*  let fd= new FormData()
     fd.append('Auser',Auser)
     fd.append('phone',Phone)
-    fd.append('user',User)
+    fd.append('User', User)
+    fd.append('aid',Aid)?*/
+    const formData = {
+        Auser,Phone,User,Aid
+    }
+    console.log(formData)
     let res =  await fetch("http://localhost:8000/AdopterPop",{
             method : 'POST',
-            // {/*headers :{
-            //         'Accept' : 'application/json',
-            //         'Content-Type': 'application/json'
-            // },*/}
-            body : fd
+            headers :{
+                   'Accept' : 'application/json',
+                   'Content-Type': 'application/json'
+            },
+            body : JSON.stringify(formData)
     })
+    const result = await res.json();
+    console.log(result);
     }
  
   return (
@@ -90,13 +99,17 @@ function ProfilePage  ({forwardUsername})  {
                 <div className={classes.Upload}>
                     <div className={classes.Wrapper}>
                     <form onSubmit={submitHandler} method="POST" className={classes.form} enctype="multipart/form-data" action='/Upload'>
+                    <div className={classes.control}>    
+                                <label htmlFor="aid">Animal ID</label>
+                                <input type="text" value ={post.a_id} name="aid" id="aid"  size="30" maxLength={30} required disabled  />
+                            </div>                           
                             <div className={classes.control}>    
-                                <label htmlFor="user">Your Name</label>
+                                <label htmlFor="User">User Name</label>
                                 <input type="text" value ={post.user} name="user" id="user"  size="30" maxLength={30} required disabled  />
                             </div> 
                             <div className={classes.control}>    
                                     <label htmlFor="Auser">Adopter Name</label>
-                                    <input type="text" name="Auser" id="user" size="30" maxLength={30} placeholder="Enter the Adopter Name" required />
+                                    <input type="text" name="Auser" id="Auser" size="30" maxLength={30} placeholder="Enter the Adopter Name" required onChange={(e)=> setAuser(e.target.value)}/>
                             </div>               
 
 
