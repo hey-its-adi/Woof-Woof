@@ -54,7 +54,7 @@ function DashboardNavigation(){
                 <Link to='/Profile'>
                     <span><CgProfile size={'2rem'} color={pcolor} onClick={changePcolor}/></span>
                 </Link>
-                <Link to='/Achievments'>
+                <Link to='/Achievements'>
                     <span><GiHospitalCross size={'2rem'} color={acolor} onClick={changeAcolor}/></span>
                 </Link>
 

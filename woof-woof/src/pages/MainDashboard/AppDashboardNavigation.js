@@ -5,6 +5,7 @@ import DashboardNavigation from './DashboardNavigation';
 import classes from "./App.module.css"
 import UploadPage from '../Upload/UploadPage';
 import ProfilePage from '../Profile/ProfilePage';
+import Achievements from '../Achievements/Achievements';
 
 function AppDashboard({forwardUsername}) {
   const [refreshCount, setRefreshCount] = useState(0);
@@ -17,7 +18,7 @@ return(
           <Route path='*' element={<FeedPage forwardUsername={forwardUsername} refreshCount={setRefreshCount}/>}/>
           <Route path='/Upload' element={<UploadPage forwardUsername={forwardUsername}/>}/>
           <Route path='/Profile' element={<ProfilePage forwardUsername={forwardUsername}/>}/>
-          <Route path='/Achievments'/>
+          <Route path='/Achievements'element={<Achievements/>}/>
 
       </Routes>
         </Router>
