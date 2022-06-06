@@ -152,7 +152,6 @@ app.get('/Dashboard', async (req,res) => {
 
 app.post('/Profile', async (req,res) => {
     
-    console.log("hiiii")
    const uinput = req.body
     let result = [];
     try {
@@ -183,10 +182,8 @@ app.post('/AdopterPop', async (req,res) => {
         if(!connection) {
             return res.status(500).json({message: "DB connect fail"});
         }
-        
-        result =  await connection.query(`DELETE FROM animals WHERE a_id='{${ainput.id}'`);
-        result1 =  await connection.query(`INSERT INTO adopters (a_id,adname,adphone,user) VALUES ('${ainput.id})','${ainput.name}','${ainput.phone}','${ainput.user}'`);
-        if(!result || result.length == 0) {
+        result1 =  await connection.query(`INSERT INTO adopters (a_id,adname,adphone,user) VALUES('${ainput.Aid}','${ainput.Auser}','${ainput.Phone}','${ainput.User}')`);
+         if(!result || result.length == 0) {
             return res.status(500).json({message: "no result"});
         }
     } catch(err) {
@@ -194,9 +191,12 @@ app.post('/AdopterPop', async (req,res) => {
 
     }
 
-    return res.status(200).json({message: "Success" });
+return res.status(200).json({message: "Success" });
 
 })
+
+
+
 function setValue(value) {
     someVar = value;
    // console.log(someVar);
