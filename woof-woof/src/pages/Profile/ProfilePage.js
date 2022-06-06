@@ -41,9 +41,9 @@ function ProfilePage  ({forwardUsername})  {
   }
   async function submitHandler(event,onSubmitProps){
     event.preventDefault();
-    setUser(document.getElementById('puser').value)
-    setAid(document.getElementById('paid').value)
-    setFname(document.getElementById('pimg').src)
+    await setUser(document.getElementById('puser').value)
+    await setAid(document.getElementById('paid').value)
+    await setFname(document.getElementById('pimg').src)
 
   /*  let fd= new FormData()
     fd.append('Auser',Auser)

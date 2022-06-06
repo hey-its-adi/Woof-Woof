@@ -199,7 +199,7 @@ return res.status(200).json({message: "Success" });
 })
 
 app.get('/Achievements', async (req,res) => {
-    console.log("yes")
+    
     let result = [];
     let result1=[];
     try {
