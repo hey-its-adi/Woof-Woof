@@ -31,7 +31,7 @@ function FeedPage ({forwardUsername,refreshCount,setRefreshCount})  {
   return (
     <div className="feed">   
         <div className="refresh">
-            <button onClick={() => setRefreshCount(refreshCount + 1)}>refresh</button>
+            <button className="rbtn" onClick={() => setRefreshCount(refreshCount + 1)}>Refresh</button>
         </div>    
         {Post && Post.length && Post.map((post) => {
             var string = post.fname;

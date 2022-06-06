@@ -8,7 +8,7 @@ import {TbVaccine} from 'react-icons/tb'
 import {useEffect,useState} from 'react'
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-import classes from '../Upload/UploadPage.module.css'
+import classes from './ProfilePage.module.css'
 
 function ProfilePage  ({forwardUsername})  {
   const [Post, setPost] = useState([]);
@@ -97,8 +97,8 @@ function ProfilePage  ({forwardUsername})  {
   return (
     <div className="feed">   
         <div className="refresh">
-            <button onClick={() => {console.log(refreshCount); setRefreshCount(refreshCount + 1)}}>refresh</button>
-        </div>    
+            <button className={classes.rbtn} onClick={() => {console.log(refreshCount); setRefreshCount(refreshCount + 1)}}>Refresh</button>
+        </div> 
         {!Post || !Post.length && <div></div>}
         {Post && Post.length ? Post.map((post) => {
             string = post.fname;
@@ -128,7 +128,7 @@ function ProfilePage  ({forwardUsername})  {
                     <span className="feedLikeCounter">20 People Liked it</span>
                 </div>
                 <div>
-                    <Popup trigger={<button> Trigger</button>} position="right center">
+                    <Popup trigger={<button className={classes.btn}>Edit</button>}  modal position="right center">
                     <div className={classes.Upload}>
                         <div className={classes.Wrapper}>
                         <form onSubmit={submitHandler} method="POST" className={classes.form} enctype="multipart/form-data" action='/Upload'>

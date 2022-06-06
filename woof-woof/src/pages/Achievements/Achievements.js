@@ -6,6 +6,7 @@ import {GoLocation} from 'react-icons/go'
 import {MdOutlineContactPhone} from 'react-icons/md'
 import {TbVaccine} from 'react-icons/tb'
 import {useEffect,useState} from 'react'
+import classes from './Achievements.module.css'
 
 function Achievements () {
     const [adopted, setAdopted] = useState([]);
@@ -51,8 +52,8 @@ function Achievements () {
     return (
         <div className="feed">   
         <div className="refresh">
-            <button onClick={handleFilter}>Adopted</button>
-            <button onClick={handleFilter}>Fostered</button>
+            <button className={classes.abtn} onClick={handleFilter}>Adopted</button>
+            <button className={classes.fbtn}  onClick={handleFilter}>Fostered</button>
         </div>    
         {isAdopted && adopted && adopted.length ? adopted.map((post) => {
             return (<div className="feedWrapper">

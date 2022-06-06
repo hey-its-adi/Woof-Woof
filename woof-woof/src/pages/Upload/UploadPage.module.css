@@ -19,6 +19,7 @@
     border-radius: 10px;
     -webkit-box-shadow: 0px 0px 16px -8px rgba(0,0,0,0.68);
     box-shadow: 0px 0px 16px -8px rgba(0,0,0,0.68);
+    width : 30%;
 }
 
 
@@ -60,16 +61,16 @@ input::-webkit-inner-spin-button {
 .actions button {
     font: inherit;
     cursor: pointer;
-    background-color: #77002e;
+    background-color:  #de1f68;
     color: white;
-    padding: 0.5rem 1.5rem;
-    border: 1px solid #77002e;
-    border-radius: 4px;
+    padding: 0.5rem 1.5rem;;
+    border-radius: 8px;
+    border: 1px solid #de1f68;
     font-weight: bold;
 }
   
 .actions button:hover,
 .actions button:active {
-    background-color: #a50e48;
-    border-color: #a50e48;
+    background-color: #cb326c;
+
 }
