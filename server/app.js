@@ -198,6 +198,28 @@ return res.status(200).json({message: "Success" });
 
 })
 
+app.get('/Achievements', async (req,res) => {
+    console.log("yes")
+    let result = [];
+    try {
+        const connection =  await pool.getConnection();
+        if(!connection) {
+            return res.status(500).json({message: "DB connect fail"});
+        }
+        
+        result =  await connection.query(`SELECT * FROM adopters`);
+       
+        if(!result || result.length == 0) {
+            return res.status(500).json({message: "no result"});
+        }
+    } catch(err) {
+        console.log(err);
+
+    }
+
+    return res.status(200).json({result});
+
+})
 
 
 function setValue(value) {

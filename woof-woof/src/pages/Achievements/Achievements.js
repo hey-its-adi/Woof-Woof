@@ -31,27 +31,23 @@ function Achievements () {
             <button onClick={() => setRefreshCount(refreshCount + 1)}>refresh</button>
         </div>    
         {Post && Post.length && Post.map((post) => {
-            var string = post.fname;
-            var new_string = string.replace("publicimages","");
-            var new_string1 = 'http://localhost:8000/'+new_string;
+        
 
             return (<div className="feedWrapper">
                 <div className='feedTop'>
                     <div className="feedTopLeft">      
                         <span className="feedUserName">{post.user}</span>
-                        <span className="feedTime">{post.adate}</span>
                     </div>
                     <div className="feedTopRight">
                         <FiMoreVertical/>
                     </div>
                 </div>
                 <div className="feedCenter">
-                    <img src={new_string1} alt='' className='feedImg'/><br/>
+                    <img src={post.fname} alt='' className='feedImg'/><br/>
                     <div className='feedCenterBottom'>
-                        <span className="feedBreedName"><SiDatadog/><h5>{post.name}</h5></span>
-                        <span className="feedLocation"><GoLocation/><h5>{post.location}</h5></span>
-                        <span className="feedContact"><MdOutlineContactPhone/><h5>{post.phone}</h5></span>
-                        <span className="feedVaccination"><TbVaccine/><h5>{post.vaccine}</h5></span>     
+                        <span className="feedBreedName"><SiDatadog/><h5>{post.adname}</h5></span>
+                        <span className="feedContact"><MdOutlineContactPhone/><h5>{post.adphone}</h5></span>
+
                     </div> 
                 </div>
                 <div className="feedBottom">
