@@ -59,7 +59,7 @@ function FeedPage ({forwardUsername,refreshCount,setRefreshCount})  {
                 </div>
                 <div className="feedBottom">
                     <span className="feedLike"><FcLike/></span>
-                    <span className="feedLikeCounter">20 People Liked it</span>
+                    <span className="feedLikeCounter">Be an angel for pets</span>
                 </div>
             </div>);
         })} 

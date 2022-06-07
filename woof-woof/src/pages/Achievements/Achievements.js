@@ -12,6 +12,9 @@ function Achievements () {
     const [adopted, setAdopted] = useState([]);
     const [foster, setFoster] = useState([]);
     const [isAdopted, setIsAdopted] = useState(true);
+    const [Acount, setAcount] = useState([])
+    const [Fcount, setFcount] = useState([])
+    const [Render, setRender] = useState(false)
   
     useEffect(() => {
         console.log("yes")
@@ -23,7 +26,8 @@ function Achievements () {
             const reponse = await res.json()
             setAdopted(await reponse.result)
             setFoster(await reponse.result1)
-            console.log(await reponse)
+            setAcount(await reponse.acount[0].acount)
+            setFcount(await reponse.fcount[0].fcount)
         }   
         getPost();
     }, [])    
@@ -37,14 +41,19 @@ function Achievements () {
             const reponse = await res.json()
             setAdopted(await reponse.result)
             setFoster(await reponse.result1)
-            console.log(await reponse)
+            setAcount(await reponse.acount[0].acount)
+            setFcount(await reponse.fcount[0].fcount)
+            console.log(await Acount)
+            console.log(await Fcount)
         }   
         getPost();
         if(e.target.innerHTML === "Adopted") {
             setIsAdopted(true);
+            setRender(false)
             console.log(adopted)
         } else {
             setIsAdopted(false);
+            setRender(true)
             console.log(foster)
         }
     }
@@ -55,8 +64,11 @@ function Achievements () {
             <button className={classes.abtn} onClick={handleFilter}>Adopted</button>
             <button className={classes.fbtn}  onClick={handleFilter}>Fostered</button>
         </div>    
+        {!Render && <div className={classes.display}> {Acount} PETS FOUND A NEW PERMANENT HOME </div>} 
+        {Render && <div className={classes.display}> {Fcount} PETS FOUND A NEW TEMPORARY HOME</div>}
         {isAdopted && adopted && adopted.length ? adopted.map((post) => {
-            return (<div className="feedWrapper">
+            return (
+            <div className="feedWrapper">
                 <div className='feedTop'>
                     <div className="feedTopLeft">      
                         <span className="feedUserName">{post.user}</span>
@@ -75,7 +87,7 @@ function Achievements () {
                 </div>
                 <div className="feedBottom">
                     <span className="feedLike"><FcLike/></span>
-                    <span className="feedLikeCounter">20 People Liked it</span>
+                    <span className="feedLikeCounter">Being Pawsitive!</span>
                 </div>
             </div>);
         }) : <div></div>} 
@@ -99,7 +111,7 @@ function Achievements () {
                 </div>
                 <div className="feedBottom">
                     <span className="feedLike"><FcLike/></span>
-                    <span className="feedLikeCounter">20 People Liked it</span>
+                    <span className="feedLikeCounter">Being Pawsitive!</span>
                 </div>
             </div>);
         }) : <div></div>} 

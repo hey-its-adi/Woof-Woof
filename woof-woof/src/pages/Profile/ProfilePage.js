@@ -125,7 +125,7 @@ function ProfilePage  ({forwardUsername})  {
                 </div>
                 <div className="feedBottom">
                     <span className="feedLike"><FcLike/></span>
-                    <span className="feedLikeCounter">20 People Liked it</span>
+                    <span className="feedLikeCounter">'Rescued' is my favourite breed</span>
                 </div>
                 <div>
                     <Popup trigger={<button className={classes.btn}>Edit</button>}  modal position="right center">
@@ -194,7 +194,7 @@ function ProfilePage  ({forwardUsername})  {
                 </div>
                 <div className="feedBottom">
                     <span className="feedLike"><FcLike/></span>
-                    <span className="feedLikeCounter">20 People Liked it</span>
+                    <span className="feedLikeCounter">'Rescued' is my favourite breed</span>
                 </div>
             </div>);
         }) :

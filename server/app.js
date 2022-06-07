@@ -213,6 +213,8 @@ app.get('/Achievements', async (req,res) => {
     
     let result = [];
     let result1=[];
+    let acount=0;
+    let fcount=0;
     try {
         const connection =  await pool.getConnection();
         if(!connection) {
@@ -220,7 +222,9 @@ app.get('/Achievements', async (req,res) => {
         }
         
         result =  await connection.query(`SELECT * FROM adopters`);
-        result1 = await connection.query(`SELECT * FROM fosters`)
+        result1 = await connection.query(`SELECT * FROM fosters`) 
+        acount =  await connection.query(`SELECT COUNT(*) as acount FROM adopters`);
+        fcount =  await connection.query(`SELECT COUNT(*) as fcount FROM fosters`);
 
         if(!result ) {
             return res.status(500).json({message: "no result"});
@@ -228,12 +232,20 @@ app.get('/Achievements', async (req,res) => {
         if(!result1) {
             return res.status(500).json({message: "no result"});
         }
+        if(!acount)
+        {
+            return res.status(500).json({message: "no result"});
+        }
+        if(!fcount)
+        {
+            return res.status(500).json({message: "no result"});
+        }
     } catch(err) {
         console.log(err);
 
     }
 
-    return res.status(200).json({result,result1});
+    return res.status(200).json({result,result1,fcount,acount});
 
 })
 

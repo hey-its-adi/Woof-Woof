@@ -31,7 +31,15 @@
   .button-1:focus {
     background-color: #F082AC;
   }
-  
+  .display {
+    position: absolute;
+    top: 18%;
+    font-family: 'Montserrat', sans-serif;
+    font-style: bold;
+    color: white;
+
+  }
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&display=swap');
   .fbtn {
     background-color: #de1f68;
     border-radius: 8px;
